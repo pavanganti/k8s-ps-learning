@@ -1,0 +1,79 @@
+installing kubectl on mac:
+brew install kubernetes-cli
+
+validating the install:
+kubectl version --client
+
+installing minikube:
+brew cask install minikube
+
+installing xhyve:
+brew install docker-machine-driver-xhyve
+
+sudo chown root:wheel /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+    sudo chmod u+s /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+Run the minimum with xhyve:
+minikube start --vm-driver=xhyve
+
+To start a particular version:
+minikube start --vm-driver=xhyve --kubernetes-version=“<versionnumber>”
+
+To know the current context:
+kubectl config current-context
+
+To get the nodes:
+kubectl get nodes
+
+To stop the minikube:
+minikube stop
+
+To delete the minikube:
+minikube delete
+
+Minikube Dashboard:
+minikube dashboard
+
+To get the description of the pods:
+kubectl describe pods
+
+Get a particular pod:
+kubectl get pods/<pod-name>
+
+All pods
+kubectl get pods --all-namespaces
+
+To delete a pod:
+kinectl delete pods <pod-name>
+
+To get a Replication Controller:
+kubectl get rc
+kubectl get rc -o wide
+
+To describe Replication Controller:
+kubectl describe rc
+
+To change the desired state for a Replication Controller - deployed application:
+Update the rc.yml file (or the manifest file) and execute the command:
+kubectl apply -f rc.yml
+
+To create a Service:
+kubectl expose rc <replication-controller-name> --name=<name of the service> --target-port=8080 --type=NodePort 
+Example: kubectl expose rc hello-rc --name=hello-svc --target-port=8080 --type=NodePort
+
+To describe a Service:
+kubectl describe svc hello-svc 
+
+kubectl get svc
+
+To delete a service:
+kubectl delete svc <name of service>hello-svc
+
+To create a service from File:
+kubectl create -f svc.yml
+
+To see the Endpoint:
+kubectl get ep
+
+To describe the Endpoint:
+kubectl describe ep <service name>
