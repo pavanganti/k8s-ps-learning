@@ -77,3 +77,32 @@ kubectl get ep
 
 To describe the Endpoint:
 kubectl describe ep <service name>
+
+
+To create a deployment:
+kubectl create -f <deployment iml file name>
+
+To descrive a Deployment:
+kubectl describe deploy <deployment name>
+
+To see the Replica Sets:
+kubectl get rs
+
+To describe the ReplicaSet
+kubectl describe rs
+
+To apply new changes to the Deployment:
+kubectl apply -f <deployment file name> --record
+Highly recommended to use the --record flag with the deployments
+
+To see the status of Rollout:
+kubectl rollout status deployment hello-deploy
+
+To get the Deployments
+kubectl get deploy <name of the deployment>
+
+To get the Deployment history:
+kubectl rollout history deployment <deployment name>
+
+To undo a rollout of the deployment:
+kubectl rollout undo deployment <deployment name> --to-revision=1
